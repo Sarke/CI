@@ -30,4 +30,6 @@ RUN apt-get update && \
 	apt-get -y --no-install-recommends install \
 		openssh-client
 
+RUN mkdir /root/.ssh
+
 COPY ./bin/* /usr/local/bin/
