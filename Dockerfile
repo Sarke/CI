@@ -20,10 +20,14 @@ RUN apt-get update && \
 
 RUN apt-get update && \
 	apt-get -y --no-install-recommends install \
-		nodejs yarnpkg 
+		nodejs yarnpkg
 
 RUN yarnpkg add node-sass
 
 RUN ln -s /root/node_modules/.bin /node
+
+RUN apt-get update && \
+	apt-get -y --no-install-recommends install \
+		openssh-client
 
 COPY ./bin/* /usr/local/bin/
