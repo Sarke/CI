@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+
+eval $(ssh-agent -s)
+ssh-add <(echo "$SSH_PRIVATE_KEY")
+mkdir -p ~/.ssh
+'[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+
+# Deploy
+echo "Deploying with $CI_DEPLOYER"
+ssh -p22 $CI_DEPLOYER 'echo $PATH'
+ssh -p22 $CI_DEPLOYER "cd $CI_DOCKER_DIR && DOCKER_CONFIG=. /home/ubuntu/.local/bin/docker-compose pull && /home/ubuntu/.local/bin/docker-compose up -d"
