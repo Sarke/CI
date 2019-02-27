@@ -2,8 +2,9 @@
 
 eval $(ssh-agent -s)
 ssh-add <(echo "$SSH_PRIVATE_KEY")
-mkdir -p /root/.ssh
-'[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > /root/.ssh/config'
+mkdir -p ~/.ssh
+echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+#'[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
 
 # Deploy
 echo "Deploying with $CI_DEPLOYER"
