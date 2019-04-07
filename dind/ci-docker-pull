@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+(docker pull "$@" | grep -v -e 'Pulling fs layer' -e 'Waiting' -e 'Verifying Checksum' -e 'Download complete') || true
