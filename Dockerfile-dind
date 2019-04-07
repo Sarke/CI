@@ -1,0 +1,7 @@
+FROM docker:dind
+
+# ENV DEBIAN_FRONTEND=noninteractive
+# ENV HOME=/root
+
+COPY ./dind/* /usr/local/bin/
+
