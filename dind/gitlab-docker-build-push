@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 set -x
-./gitlab-docker-pull
-./gitlab-docker-build
-./gitlab-docker-push
+gitlab-docker-pull
+gitlab-docker-build
+gitlab-docker-push
