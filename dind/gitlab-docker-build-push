@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -x
+env | grep DOCKER
 gitlab-docker-pull
 gitlab-docker-build
 gitlab-docker-push
