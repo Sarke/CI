@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 set -ex
+set -o pipefail
 docker build "$@" | grep -v -e 'Pulling fs layer' -e 'Waiting' -e 'Verifying Checksum' -e 'Download complete'

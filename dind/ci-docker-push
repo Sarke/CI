@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 set -ex
+set -o pipefail
 docker push "$@" | grep -v -e 'Preparing' -e 'Waiting'
