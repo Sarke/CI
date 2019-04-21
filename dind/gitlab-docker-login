@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-set -ex
+set -x
+echo '+ docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com'
 docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
