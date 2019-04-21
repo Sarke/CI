@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-gitlab-add-private-key
+eval $(ssh-agent -s)
+ssh-add <(echo "$SSH_PRIVATE_KEY")
+mkdir -p ~/.ssh
+echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+#'[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
 
 # Deploy
 echo "Deploying with $CI_DEPLOYER"
