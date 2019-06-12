@@ -8,7 +8,7 @@ ENV HOME=/root
 
 RUN apt-get update && \
 	apt-get -y --no-install-recommends install \
-		apt-utils ca-certificates sudo
+		apt-utils ca-certificates sudo rsync
 
 RUN apt-get update && \
 	apt-get -y --no-install-recommends install \
