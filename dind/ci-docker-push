@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 set -e
 set -o pipefail
-echo '+ docker push'"$@"
+echo '+ docker push '"$@"
 docker push "$@" | grep -v -e 'Preparing' -e 'Waiting'
