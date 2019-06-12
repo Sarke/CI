@@ -8,26 +8,32 @@ ENV HOME=/root
 
 RUN apt-get update && \
 	apt-get -y --no-install-recommends install \
-		apt-utils ca-certificates sudo rsync
+		apt-utils ca-certificates gnupg sudo \
+		rsync curl git unzip \
+		openssh-client && \
+	apt-get clean && \
+	apt-get purge -y --auto-remove && \
+	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
+	echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
 RUN apt-get update && \
 	apt-get -y --no-install-recommends install \
-		python3
+		python3 \
+		php-cli php-xml php-curl php-zip composer \
+		nodejs yarn && \
+	apt-get clean && \
+	apt-get purge -y --auto-remove && \
+	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN apt-get update && \
-	apt-get -y --no-install-recommends install \
-		php-cli composer
+ENV COMPOSER_ALLOW_SUPERUSER=1 \
+	PATH="/root/.composer/vendor/bin::${PATH}"
 
-RUN apt-get update && \
-	apt-get -y --no-install-recommends install \
-		nodejs yarnpkg
+RUN yarn global add node-sass && \
+	yarn cache clean && \
+	composer global require phpunit/phpunit && \
+	composer clear-cache
 
-RUN yarnpkg add node-sass
-
-RUN ln -s /root/node_modules/.bin /node
-
-RUN apt-get update && \
-	apt-get -y --no-install-recommends install \
-		openssh-client
-
+COPY .bashrc /root/.bashrc
 COPY ./bin/* /usr/local/bin/
