@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+set -ex
 eval $(ssh-agent -s)
 mkdir -p ~/.ssh
 echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa

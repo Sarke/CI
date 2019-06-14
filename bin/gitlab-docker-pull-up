@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
-
-eval $(ssh-agent -s)
-ssh-add <(echo "$SSH_PRIVATE_KEY")
-mkdir -p ~/.ssh
-echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-#'[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-
+set -ex
+gitlab-add-private-key
 # Deploy
 echo "Deploying with $CI_DEPLOYER"
 ssh -p22 $CI_DEPLOYER 'export PATH=$PATH:'"${CI_PATH:-/} && cd $CI_DOCKER_DIR && DOCKER_CONFIG=. docker-compose pull && docker-compose up -d"
