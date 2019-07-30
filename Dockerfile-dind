@@ -6,5 +6,7 @@ RUN apk add --no-cache \
 # ENV DEBIAN_FRONTEND=noninteractive
 # ENV HOME=/root
 
-COPY ./dind/* /usr/local/bin/
+ENV DOCKER_HOST=tcp://docker:2375
+ENV DOCKER_DRIVER=overlay2
 
+COPY ./dind/* /usr/local/bin/
