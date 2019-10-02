@@ -3,7 +3,7 @@ set -ex
 ci-docker-build \
 	--build-arg SSH_PRIVATE_KEY \
 	--file ${DOCKERFILE_NAME:-Dockerfile} \
-	--cache-from $CONTAINER_IMAGE:{$DOCKER_TAG:-$CI_COMMIT_REF_NAME} \
+	--cache-from $CONTAINER_IMAGE:${DOCKER_TAG:-$CI_COMMIT_REF_NAME} \
 	--tag $CONTAINER_IMAGE:$CI_COMMIT_SHA \
-	--tag $CONTAINER_IMAGE:{$DOCKER_TAG:-$CI_COMMIT_REF_NAME} \
+	--tag $CONTAINER_IMAGE:${DOCKER_TAG:-$CI_COMMIT_REF_NAME} \
 	.
