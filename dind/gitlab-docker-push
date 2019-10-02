@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 set -ex
-ci-docker-push $CONTAINER_IMAGE:$CI_COMMIT_REF_NAME
+ci-docker-push $CONTAINER_IMAGE:{$DOCKER_TAG:-$CI_COMMIT_REF_NAME}
