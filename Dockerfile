@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:bookworm-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV HOME=/root
@@ -30,9 +30,7 @@ RUN apt-get update && \
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
 	PATH="/root/.composer/vendor/bin::${PATH}"
 
-RUN yarn global add node-sass && \
-	yarn cache clean && \
-	composer global require phpunit/phpunit && \
+RUN composer global require phpunit/phpunit && \
 	composer clear-cache
 
 COPY .bashrc /root/.bashrc
