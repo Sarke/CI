@@ -1,5 +1,5 @@
 # https://gitlab.com/gitlab-org/gitlab-runner/issues/4143#note_194116050
-FROM docker:18.09-dind as upstream
+FROM docker:24.0.7-dind as upstream
 
 # copy everything to a clean image, so we can change the exposed ports
 FROM scratch
@@ -14,5 +14,5 @@ ENTRYPOINT ["dockerd-entrypoint.sh"]
 CMD []
 
 ENV DOCKER_CHANNEL=stable
-ENV DOCKER_VERSION=18.09
+ENV DOCKER_VERSION=24.0.7
 ENV DOCKER_TLS_CERTDIR ''
