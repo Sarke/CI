@@ -2,4 +2,4 @@
 set -e
 set -o pipefail
 echo '+ docker push '"$@"
-docker push "$@" | grep -v -e 'Preparing' -e 'Waiting'
+docker push "$@"

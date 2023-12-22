@@ -2,4 +2,4 @@
 set -e
 set -o pipefail
 echo '+ docker pull '"$@"
-(docker pull "$@" | grep -v -e 'Pulling fs layer' -e 'Waiting' -e 'Verifying Checksum' -e 'Download complete') || true
+docker pull "$@" || true
