@@ -11,8 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dockerfile: ['Dockerfile', 'Dockerfile-dind', 'Dockerfile-dind-service']
-        tag: ['ci', 'ci:dind', 'ci:dind-service']
+        include:
+          - dockerfile: 'Dockerfile'
+            tag: 'ci'
+          - dockerfile: 'Dockerfile-dind'
+            tag: 'ci:dind'
+          - dockerfile: 'Dockerfile-dind-service'
+            tag: 'ci:dind-service'
     steps:
       -
         name: Set up QEMU
