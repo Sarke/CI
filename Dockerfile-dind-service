@@ -1,19 +1,18 @@
 # https://gitlab.com/gitlab-org/gitlab-runner/issues/4143#note_194116050
-FROM docker:24.0.7-dind
-# as upstream
+FROM docker:24.0.7-dind as upstream
 
 # copy everything to a clean image, so we can change the exposed ports
-#FROM scratch
-#COPY --from=upstream / /
+FROM scratch
+COPY --from=upstream / /
 
-#VOLUME /var/lib/docker
+VOLUME /var/lib/docker
 
 # EXPOSE 2376 # is for tls connections, and having both breaks gitlab "wait-for-it" service
-#EXPOSE 2375
+EXPOSE 2375
 
-#ENTRYPOINT ["dockerd-entrypoint.sh"]
-#CMD []
+ENTRYPOINT ["dockerd-entrypoint.sh"]
+CMD []
 
-#ENV DOCKER_CHANNEL=stable
-#ENV DOCKER_VERSION=24.0.7
-#ENV DOCKER_TLS_CERTDIR ''
+ENV DOCKER_CHANNEL=stable
+ENV DOCKER_VERSION=24.0.7
+ENV DOCKER_TLS_CERTDIR ''
